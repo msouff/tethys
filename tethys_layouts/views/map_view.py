@@ -21,7 +21,7 @@ class MapViewLayoutController(TethysLayoutController):
     template_name = "tethys_layouts/map_view.html"
 
     # Legend
-    legend = True
+    toc_legend = True
 
     # MVView
     projection = 'EPSG:4326'
@@ -41,7 +41,7 @@ class MapViewLayoutController(TethysLayoutController):
 
     def build_layers(self, request, *args, **kwargs):
         """
-        Build and return the MVLayers for then underlying MapView Gizmo.
+        Build and return the MVLayers for the underlying MapView Gizmo.
         """
         return []
 
@@ -50,7 +50,7 @@ class MapViewLayoutController(TethysLayoutController):
         Build and return MVDraw for the underlying MapView Gizmo.
         """
         mvdraw = MVDraw(
-            controls=['Modify', 'Delete', 'Move', 'Point', 'LineString', 'Polygon', 'Box'],
+            controls=['Delete', 'Move', 'Point', 'Box','Polygon','LineString', 'Modify'],
             initial='Point',
             output_format=self.input_data_format
         )
@@ -81,7 +81,7 @@ class MapViewLayoutController(TethysLayoutController):
             view=self.build_mvview(request, args, kwargs),
             basemap=self.basemap,
             draw=self.build_mvdraw(request, args, kwargs),
-            legend=self.legend
+            toc_legend=self.toc_legend
         )
         return map_view_gizmo
 
@@ -89,6 +89,13 @@ class MapViewLayoutController(TethysLayoutController):
         """
         Handle a save event from the map.
         """
+        # post_data = request.POST
+        # for key in post_data.keys():
+        #     print(post_data[key])
+        # if len(post_data.keys()) >= 1:
+        #     return True
+        # else:
+        print("Save method not implemented.")
         return False
 
     def get(self, request, *args, **kwargs):
