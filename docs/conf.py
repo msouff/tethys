@@ -115,7 +115,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Tethys Platform'
-copyright = u'2014, Nathan Swain'
+copyright = u'2019, Tethys Platform'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
