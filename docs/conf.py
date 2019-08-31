@@ -353,16 +353,25 @@ texinfo_documents = [
 # on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
-if not on_rtd:  # only import and set the theme if we're building docs locally
-    import sphinx_rtd_theme
-    html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-
-# otherwise, readthedocs.org uses their theme by default, so no need to specify it
-
-
 # If this is True, todo and todolist produce output, else they produce nothing. The default is False.
 todo_include_todos = True
 
 # If this is True, todo emits a warning for each TODO entries. The default is False.
 todo_emit_warnings = True
+
+import guzzle_sphinx_theme
+
+# Adds an HTML table visitor to apply Bootstrap table classes
+html_translator_class = 'guzzle_sphinx_theme.HTMLTranslator'
+html_theme_path = guzzle_sphinx_theme.html_theme_path()
+html_theme = 'guzzle_sphinx_theme'
+
+# Register the theme as an extension to generate a sitemap.xml
+extensions.append("guzzle_sphinx_theme")
+
+# Guzzle theme options (see theme.conf for more information)
+html_theme_options = {
+    # Set the name of the project to appear in the sidebar
+    "project_nav_name": "Tethys Platform",
+}
+
